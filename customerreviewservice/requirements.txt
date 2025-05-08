@@ -1,0 +1,3 @@
+Flask==2.0.2
+requests
+Werkzeug==2.2.2 ## no idea why I had to add this - I was getting errors it was missing?

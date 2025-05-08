@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  customerreviewservice:
+    build: ./customerreviewservice
+    ports:
+      - "5000:5000"
+    depends_on:
+      - userservice
+
+  menuservice:
+    build: ./menuservice
+    ports:
+      - "5001:5001"
+    depends_on:
+      - userservice
+
+  orderservice:
+    build: ./orderservice
+    ports:
+      - "5002:5002"
+    depends_on:
+      - userservice
+      - menuservice      
+
+  userservice:
+    build: ./userservice
+    ports:
+      - "5003:5003"
