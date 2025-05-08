@@ -18,23 +18,23 @@ def hello():
 #########################
 ## OrderStatusManagementService
 #########################
-@app.route("/orderstatusmanagementservice/CreateOrder", methods=["POST"])
+@app.route("/CreateOrder", methods=["POST"])
 def CreateUser():
     return jsonify(service().create_order(request.get_json()))
 
-@app.route("/orderstatusmanagementservice/Orders", methods=["GET"])
+@app.route("/Orders", methods=["GET"])
 def GetAllOrders():
     return jsonify(service().get_all_orders())
 
-@app.route("/orderstatusmanagementservice/Orders/<order_id>", methods=["GET"])
+@app.route("/Orders/<order_id>", methods=["GET"])
 def GetUserById(order_id):
     return jsonify(service().get_order_by_id(order_id))
 
-@app.route("/orderstatusmanagementservice/GetAllOrderMenuCrosswalk", methods=["GET"])
+@app.route("/GetAllOrderMenuCrosswalk", methods=["GET"])
 def GetAllOrderMenuCrosswalk():
     return jsonify(service().get_all_order_menu_item_crosswalk())
 
-@app.route("/orderstatusmanagementservice/CreateOrderMenuCrosswalk", methods=["POST"])
+@app.route("/CreateOrderMenuCrosswalk", methods=["POST"])
 def CreateOrderMenuCrosswalk():
     return jsonify(service().create_order_menu_crosswalk(request.get_json()))
 

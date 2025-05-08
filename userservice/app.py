@@ -15,13 +15,17 @@ def add_headers(response):
 def hello():
     return "User Service Says Hello!"
 
-@app.route("/usermanagementservice/CreateUser", methods=["POST"])
+@app.route("/CreateUser", methods=["POST"])
 def CreateUser():
     return jsonify(service().create_user(request.get_json()))
 
-@app.route("/usermanagementservice/Users/<user_id>", methods=["GET"])
+@app.route("/Users/<user_id>", methods=["GET"])
 def GetUserById(user_id):
     return jsonify(service().get_user_by_id(user_id))
+
+@app.route("/Users", methods=["GET"])
+def GetUserById():
+    return jsonify(service().get_all_users())
 
 if __name__ == "__main__":
     UserManagementSchema()

@@ -10,3 +10,6 @@ class service:
     def get_user_by_id(self, id):
         return self.userItem.get_user_by_id(id)
     
+    def get_all_users(self):
+        return self.userItem.get_all_users()
+    

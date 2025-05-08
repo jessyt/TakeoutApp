@@ -53,4 +53,13 @@ class UserManagementModel:
             for i, column in enumerate(result_set[0].keys())}
             for row in result_set]
         return result
+    
+    def get_all_users(self):
+        query = f"SELECT * from {self.TABLENAME}"
+        result_set = self.conn.execute(query).fetchall()
+        print(result_set)
+        result = [{column: row[i]
+            for i, column in enumerate(result_set[0].keys())}
+            for row in result_set]
+        return result
  

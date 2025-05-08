@@ -18,19 +18,19 @@ def hello():
 #########################
 ## CustomerReviewManagementService
 #########################
-@app.route("/customerreviewservice/CreateMenuReview", methods=["POST"])
+@app.route("/CreateMenuReview", methods=["POST"])
 def CreateMenuReview():
     return jsonify(service().create_menu_review(request.get_json()))
 
-@app.route("/customerreviewservice/MenuReviews", methods=["GET"])
+@app.route("/MenuReviews", methods=["GET"])
 def GetAllMenuReviews():
     return jsonify(service().get_all_menu_reviews())
 
-@app.route("/customerreviewservice/CreateCustomerReview", methods=["POST"])
+@app.route("/CreateCustomerReview", methods=["POST"])
 def CreateCustomerReview():
     return jsonify(service().create_customer_review(request.get_json()))
 
-@app.route("/customerreviewservice/CustomerReviews", methods=["GET"])
+@app.route("/CustomerReviews", methods=["GET"])
 def GetAllCustomerReviews():
     return jsonify(service().get_all_customer_reviews())
 

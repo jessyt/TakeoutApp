@@ -16,55 +16,55 @@ def hello():
     return "MenuService says hello world!"
 
 ### Menu Item
-@app.route("/menuservice/GetMenuItems/<menu_id>", methods=["GET"])
+@app.route("/GetMenuItems/<menu_id>", methods=["GET"])
 def GetMenuItemById(menu_id):
     return jsonify(service().get_menu_item_by_id(menu_id))
 
-@app.route("/menuservice/CreateMenuItem", methods=["POST"])
+@app.route("/CreateMenuItem", methods=["POST"])
 def CreateMenuItem():
     return jsonify(service().create_menu_item(request.get_json()))
 
-@app.route("/menuservice/GetMenuItems", methods=["GET"])
+@app.route("/GetMenuItems", methods=["GET"])
 def GetAllMenuItems():
     return jsonify(service().get_all_menu_items())
 
 ### Ingredients
-@app.route("/menuservice/CreateIngredient", methods=["POST"])
+@app.route("/CreateIngredient", methods=["POST"])
 def CreateIngredient():
     return jsonify(service().create_ingredient(request.get_json()))
 
-@app.route("/menuservice/GetIngredients", methods=["GET"])
+@app.route("/GetIngredients", methods=["GET"])
 def GetAllIngredients():
     return jsonify(service().get_all_ingredients())
 
 ### Menu Item Ingredients
-@app.route("/menuservice/CreateMenuItemIngredient", methods=["POST"])
+@app.route("/CreateMenuItemIngredient", methods=["POST"])
 def CreateMenuItemIngredient():
     return jsonify(service().create_menu_item_ingredient(request.get_json()))
 
-@app.route("/menuservice/GetMenuItemIngredients", methods=["GET"])
+@app.route("/GetMenuItemIngredients", methods=["GET"])
 def GetMenuItemIngredients():
     return jsonify(service().get_all_menu_item_ingredients())
 
-@app.route("/menuservice/GetAllMenuItemsBasedOnMenu", methods=["GET"])
+@app.route("/GetAllMenuItemsBasedOnMenu", methods=["GET"])
 def GetMenuItemsBasedOnMenu():
     return jsonify(service().get_all_menu_items_based_on_menu_pk(request.get_json()))
 
 ### Coffee Bean Information
-@app.route("/menuservice/GetAllCoffeeBeanInfo", methods=["GET"])
+@app.route("/GetAllCoffeeBeanInfo", methods=["GET"])
 def GetAllCoffeeBeanInfo():
     return jsonify(service().get_all_coffee_bean_info())
 
-@app.route("/menuservice/CreateCoffeeBeanInfo", methods=["POST"])
+@app.route("/CreateCoffeeBeanInfo", methods=["POST"])
 def CreateCoffeeBeanInfo():
     return jsonify(service().create_coffee_bean_info(request.get_json()))
 
 ## Milk Substitutions
-@app.route("/menuservice/GetAllMilkSubstitutionInfo", methods=["GET"])
+@app.route("/GetAllMilkSubstitutionInfo", methods=["GET"])
 def GetAllMilkSubstitutionInfo():
     return jsonify(service().get_all_milk_substitutions())
 
-@app.route("/menuservice/CreateMilkSubstitutionInfo", methods=["POST"])
+@app.route("/CreateMilkSubstitutionInfo", methods=["POST"])
 def CreateMilkSubstitutionInfo():
     return jsonify(service().create_milk_substitution_info(request.get_json()))
 
