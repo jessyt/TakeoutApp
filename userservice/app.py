@@ -24,7 +24,7 @@ def GetUserById(user_id):
     return jsonify(service().get_user_by_id(user_id))
 
 @app.route("/Users", methods=["GET"])
-def GetUserById():
+def GetAllUsersById():
     return jsonify(service().get_all_users())
 
 if __name__ == "__main__":

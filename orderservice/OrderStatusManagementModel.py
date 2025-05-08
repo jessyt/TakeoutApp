@@ -23,6 +23,8 @@ class OrderStatusManagementSchema:
         TimeToComplete INTEGER,
         TotalCost Integer
         );
+
+        
         """
         self.conn.execute(query)
     

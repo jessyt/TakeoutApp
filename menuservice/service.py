@@ -8,8 +8,8 @@ class service:
         self.coffeeBeanInfo = CoffeeBeanInfoModel()
         self.milksubstitutions = MilkSubstitutionsModel()
 
-    def create_menu_item(self):
-        return self.menuItem.create_menu_item()
+    def create_menu_item(self, params):
+        return self.menuItem.create_menu_item(params)
     
     def get_menu_item_by_id(self, id):
         return self.menuItem.get_menu_item_by_id(id)
@@ -29,8 +29,8 @@ class service:
     def create_menu_item_ingredient(self, params):
         return self.menuItemIngredients.create_menu_item_ingredient(params)  
 
-    def get_all_menu_items_based_on_menu_pk(self, params):
-        return self.menuItemIngredients.get_all_menu_items_based_on_menu_pk(params) 
+    def get_all_menu_items_based_on_menu_pk(self, menu_id):
+        return self.menuItemIngredients.get_all_menu_items_based_on_menu_pk(menu_id) 
     
     def get_all_coffee_bean_info(self):
         return self.coffeeBeanInfo.get_all_coffee_bean_info() 
