@@ -6,6 +6,7 @@ services:
       - "5000:5000"
     depends_on:
       - userservice
+      - menuservice
 
   menuservice:
     build: ./menuservice

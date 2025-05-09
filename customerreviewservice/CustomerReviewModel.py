@@ -62,7 +62,7 @@ class MenuItemReviewModel:
         print(result)
         return f'Successfully created new Menu review'
     
-    def get_menu_item_review_based_on_id(self, menu_id):
+    def get_menu_item_review_based_on_menu_id(self, menu_id):
         query = f"SELECT * from {self.TABLENAME} where MenuItemFK = {menu_id}"
         result_set = self.conn.execute(query).fetchall()
         print(result_set)
