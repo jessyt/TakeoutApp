@@ -13,9 +13,9 @@ class OrderStatusManagementSchema:
 
     def create_order_table(self):
         query = """
-        CREATE TABLE IF NOT EXISTS "Order" (
+        CREATE TABLE IF NOT EXISTS "OrderTable" (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        User Text,
+        UserId INTEGER,
         StartedTime Text,
         CompletedTime Text,
         PointTotal Integer,
@@ -24,22 +24,21 @@ class OrderStatusManagementSchema:
         TotalCost Integer
         );
 
-        
         """
         self.conn.execute(query)
-    
+
     def create_order_menu_crosswalk_table(self):
         query = """
         CREATE TABLE IF NOT EXISTS "OrderMenuCrosswalk" (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        OrderFK INTEGER FOREIGNKEY REFERENCES CoffeeBeanInfo(_id),
-        Points Integer
+        MenuItemFK INTEGER,
+        OrderFK INTEGER
         );
         """
         self.conn.execute(query)
 
 class OrderModel:
-    TABLENAME = "Order"
+    TABLENAME = "OrderTable"
 
     def __init__(self):
         self.conn = sqlite3.connect('OrderStatusManagement.db')
@@ -52,7 +51,19 @@ class OrderModel:
 
 
     def create_order(self, params):
-        query = f'insert into {self.TABLENAME} (User, StartedTime, CompletedTime, PointTotal, OrderStatus, TimeToComplete, TotalCost) values ("{params.get("User")}","{params.get("StartedTime")}","{params.get("CompletedTime")}",{params.get("PointTotal")},{params.get("TimeToComplete")},{params.get("TotalCost")});'
+        query = f'''
+        INSERT INTO {self.TABLENAME}
+        (UserId, StartedTime, CompletedTime, PointTotal, OrderStatus, TimeToComplete, TotalCost)
+        VALUES (
+            {params.get("UserId")},
+            "{params.get("StartedTime")}",
+            "{params.get("CompletedTime")}",
+            {params.get("PointTotal")},
+            "{params.get("OrderStatus")}",
+            {params.get("TimeToComplete")},
+            {params.get("TotalCost")}
+        );
+        '''        
         print(query)
         result = self.conn.execute(query)
         print(result)
@@ -90,12 +101,21 @@ class OrderMenuCrosswalkModel:
 
 
     def create_order_menu_crosswalk(self, params):
-        query = f'insert into {self.TABLENAME} (OrderFK, Points) values ({params.get("OrderFK")},{params.get("Points")});'
+        query = f'insert into {self.TABLENAME} (OrderFK, MenuItemFK) values ({params.get("OrderFK")},{params.get("MenuItemFK")});'
         print(query)
         result = self.conn.execute(query)
         print(result)
         return f'Successfully created New Order Menu Crosswalk item'
 
+    def get_crosswalk_based_on_order_id(self,id):
+        query = f"SELECT * from {self.TABLENAME} where OrderFK = {id}"
+        result_set = self.conn.execute(query).fetchall()
+        print(result_set)
+        result = [{column: row[i]
+            for i, column in enumerate(result_set[0].keys())}
+            for row in result_set]
+        return result
+    
     def get_all_order_menu_item_crosswalk(self):
         query = f"SELECT * from {self.TABLENAME}"
         result_set = self.conn.execute(query).fetchall()

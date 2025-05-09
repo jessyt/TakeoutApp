@@ -56,11 +56,20 @@ class MenuItemReviewModel:
         return result    
     
     def create_menu_review(self, params):
-        query = f'insert into {self.TABLENAME} (MenuFK, Rating, Description) values ({params.get("MenuFK")},{params.get("Rating")}, "{params.get("Description")}");'
+        query = f'insert into {self.TABLENAME} (MenuItemFK, Rating, Description) values ({params.get("MenuItemFK")},{params.get("Rating")}, "{params.get("Description")}");'
         print(query)
         result = self.conn.execute(query)
         print(result)
         return f'Successfully created new Menu review'
+    
+    def get_menu_item_review_based_on_id(self, menu_id):
+        query = f"SELECT * from {self.TABLENAME} where MenuItemFK = {menu_id}"
+        result_set = self.conn.execute(query).fetchall()
+        print(result_set)
+        result = [{column: row[i]
+            for i, column in enumerate(result_set[0].keys())}
+            for row in result_set]
+        return result    
   
 class CustomerReviewModel:
     TABLENAME = "CustomerReview"

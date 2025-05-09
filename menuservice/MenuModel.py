@@ -25,7 +25,7 @@ class MenuSchema:
         AllergyInfo Text,
         Points INTEGER,
         Price INTEGER,
-        RoastType INTEGER FOREIGNKEY REFERENCES CoffeeBeanInfo(_id)
+        RoastType INTEGER FOREIGNKEY REFERENCES CoffeeBeanInfo(id)
         );
         
         """
@@ -83,8 +83,8 @@ class MenuSchema:
     def create_menu_item_ingredients_table(self):
         query = """
         CREATE TABLE IF NOT EXISTS "MenuItemIngredients" (
-        MenuItemFK INTEGER FOREIGNKEY REFERENCES MenuItem(_id),
-        IngredientItemFK INTEGER FOREIGNKEY REFERENCES Ingredients(_id)
+        MenuItemFK INTEGER FOREIGNKEY REFERENCES MenuItem(id),
+        IngredientItemFK INTEGER FOREIGNKEY REFERENCES Ingredients(id)
         );
         """
         self.conn.execute(query)
@@ -174,8 +174,17 @@ class MenuItemModel:
 
 
     def create_menu_item(self, params):
-        query = f'insert into {self.TABLENAME} (Description, Name, IsActive, MenuItemType, AllergyInfo, Points, Price, RoastType) values ("{params.get("Description")}","{params.get("Name")}",{params.get("IsActive")},"{params.get("MenuItemType")}","{params.get("AllergyInfo")}",{params.get("Points")},{params.get("Price")},"{params.get("RoastType")}");'
-        print(query)
+        query = f'''
+        insert into {self.TABLENAME} (Description, Name, IsActive, MenuItemType, AllergyInfo, Points, Price, RoastType) values 
+        ("{params.get("Description")}",
+        "{params.get("Name")}",
+        {params.get("IsActive")},
+        "{params.get("MenuItemType")}",
+        "{params.get("AllergyInfo")}",
+        {params.get("Points")},
+        {params.get("Price")},"
+        {params.get("RoastType")}");
+        '''
         result = self.conn.execute(query)
         print(result)
         return f'Successfully created New Menu item'

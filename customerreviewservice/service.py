@@ -12,7 +12,10 @@ class service:
         return self.menuItemReview.create_menu_review(params)    
 
     def get_all_customer_reviews(self):
-        return self.customerReview.get_all_customer_reviews(id)  
+        return self.customerReview.get_all_customer_reviews()  
     
     def create_customer_review(self, params):
         return self.customerReview.create_customer_review(params)  
+    
+    def get_menu_item_review_based_on_id(self, review_id):
+        return self.menuItemReview.get_menu_item_review_based_on_id(review_id)

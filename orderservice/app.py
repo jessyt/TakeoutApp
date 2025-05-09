@@ -30,9 +30,13 @@ def GetAllOrders():
 def GetUserById(order_id):
     return jsonify(service().get_order_by_id(order_id))
 
-@app.route("/GetAllOrderMenuCrosswalk", methods=["GET"])
+@app.route("/OrderMenuCrosswalks", methods=["GET"])
 def GetAllOrderMenuCrosswalk():
     return jsonify(service().get_all_order_menu_item_crosswalk())
+
+@app.route("/OrderMenuCrosswalks/<order_id>", methods=["GET"])
+def GetOrderMenuCrosswalkItemsBasedOnOrderId(order_id):
+    return jsonify(service().get_crosswalk_based_on_order_id(order_id))
 
 @app.route("/CreateOrderMenuCrosswalk", methods=["POST"])
 def CreateOrderMenuCrosswalk():
