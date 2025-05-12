@@ -35,6 +35,31 @@
 					"response": []
 				},
 				{
+					"name": "Get Entire Menu",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5001/GetEntireMenu",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5001",
+							"path": [
+								"GetEntireMenu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get all Ingredients",
 					"request": {
 						"auth": {
@@ -453,6 +478,31 @@
 							"port": "5000",
 							"path": [
 								"MenuReviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Entire Restaurant Review",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/GetRestaurantReview",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"GetRestaurantReview"
 							]
 						}
 					},
