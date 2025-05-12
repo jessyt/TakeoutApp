@@ -21,9 +21,26 @@ class service:
     def get_menu_item_review_based_on_menu_id(self, menu_id):
         try:
             menuItemDetail = requests.get(f"http://menuservice:5001/GetMenuItems/{menu_id}")
-            
             reviews = self.menuItemReview.get_menu_item_review_based_on_menu_id(menu_id)
             return {"menuItem": menuItemDetail.json(),"Details": reviews}
+        except Exception as e:
+            return f'{e}'
+        
+    def get_restaurant_review(self):
+        try:
+            menuItemReviews = self.menuItemReview.get_all_menu_reviews()
+            menuItemReviewDetails = []
+            for menuItemReview in menuItemReviews:
+                menuItem = requests.get(f"http://menuservice:5001/GetMenuItems/{menuItemReview['MenuItemFK']}")
+                menuItemReviewDetails.append({"Review": menuItemReview, "menuItem": menuItem.json()})
+                print(menuItemReviewDetails)
+            customerReviews = self.customerReview.get_all_customer_reviews()
+            customerItemReviewDetails = []
+            for customerReview in customerReviews:
+                userItem = requests.get(f"http://userservice:5003/Users/{customerReview['UserFK']}")
+                customerItemReviewDetails.append({"Review": customerReview, "user": userItem.json()})
+                print(customerItemReviewDetails)
+            return {"menuReviews": menuItemReviewDetails, "userReviews": customerItemReviewDetails}
         except Exception as e:
             return f'{e}'
 

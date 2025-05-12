@@ -50,6 +50,10 @@ def GetMenuItemIngredients():
 def GetMenuItemsBasedOnMenu(menu_id):
     return jsonify(service().get_all_menu_items_based_on_menu_pk(menu_id))
 
+@app.route("/GetEntireMenu", methods=["GET"])
+def GetEntireMenu():
+    return jsonify(service().get_entire_menu())
+
 ### Coffee Bean Information
 @app.route("/GetAllCoffeeBeanInfo", methods=["GET"])
 def GetAllCoffeeBeanInfo():

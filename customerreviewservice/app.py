@@ -38,6 +38,10 @@ def GetAllCustomerReviews():
 def GetMenuItemsBasedOnMenu(menu_id):
     return jsonify(service().get_menu_item_review_based_on_menu_id(menu_id))
 
+@app.route("/GetRestaurantReview", methods=["GET"])
+def GetRestaurantReview():
+    return jsonify(service().get_restaurant_review())
+
 if __name__ == "__main__":
     CustomerReviewSchema()
     app.run(host='0.0.0.0', port=5000)

@@ -44,3 +44,20 @@ class service:
     def create_milk_substitution_info(self, params):
         return self.milksubstitutions.create_milk_substitution_info(params) 
  
+    def get_entire_menu(self):
+        menuItems = self.menuItemIngredients.get_all_menu_item_ingredients()
+        coffeeBeans = self.coffeeBeanInfo.get_all_coffee_bean_info()
+        milkSubstitutions = self.milksubstitutions.get_all_milk_substitutions()
+        return {"menuItems": menuItems.json(),"CoffeeBeanInfo": coffeeBeans.json(), "MilkSubstitutions" : milkSubstitutions.json()}
+    
+    def get_menu_item_detail(self, menu_id):
+        menuItem = self.menuItem.get_menu_item_by_id(menu_id) 
+        menuItemIngredientsCrosswalk = self.menuItemIngredients.get_all_menu_items_based_on_menu_pk(menu_id) 
+        menu_item_detail = []
+        for crosswalkIngredient in menuItemIngredientsCrosswalk:
+            menu_item_detail.append(crosswalkIngredient.ItemName)
+        return {"menuItem": menuItem.json(), "Ingredients": menu_item_detail.json()}
+
+
+
+ 

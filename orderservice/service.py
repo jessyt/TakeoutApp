@@ -1,4 +1,5 @@
 from OrderStatusManagementModel import OrderModel, OrderMenuCrosswalkModel
+import requests
     
 class service:
     def __init__(self):
@@ -15,7 +16,11 @@ class service:
         return self.orderItem.get_order_by_id(id)  
     
     def create_order_menu_crosswalk(self, params):
-        return self.orderMenuCrosswalkItem.create_order_menu_crosswalk(params)  
+        self.orderMenuCrosswalkItem.create_order_menu_crosswalk(params)  
+        menuResponse = requests.get(f'http://menuservice:5001/GetMenuItems/{params.get("MenuItemFK")}')
+        menuItem = menuResponse.json()
+        self.orderItem.update_price_menu_item(menuItem[0]['id'], menuItem[0]['Price'])
+
 
     def get_crosswalk_based_on_order_id(self, id):
         return self.orderMenuCrosswalkItem.get_crosswalk_based_on_order_id(id)

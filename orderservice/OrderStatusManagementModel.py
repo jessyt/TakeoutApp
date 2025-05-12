@@ -86,6 +86,12 @@ class OrderModel:
             for i, column in enumerate(result_set[0].keys())}
             for row in result_set]
         return result
+    
+    def update_price_menu_item(self, id, price):
+        query = f"UPDATE {self.TABLENAME} " \
+        f"SET TotalCost  = TotalCost + {price}" \
+        f" WHERE id = {id}"
+        self.conn.execute(query)
  
 class OrderMenuCrosswalkModel:
     TABLENAME = "OrderMenuCrosswalk"
