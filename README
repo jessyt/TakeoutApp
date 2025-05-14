@@ -5,3 +5,7 @@ Contains 4 separate services
 * Menu Service
 * Order Service
 * User Service
+
+
+TO RUN LOCALLY please use docker-compose up --build
+The takeout postman collection contains all the API endpoints 

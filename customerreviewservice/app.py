@@ -38,6 +38,7 @@ def GetAllCustomerReviews():
 def GetMenuItemsBasedOnMenu(menu_id):
     return jsonify(service().get_menu_item_review_based_on_menu_id(menu_id))
 
+## Cross service api endpoint. Will get all the reviews (restaurant and menu items)
 @app.route("/GetRestaurantReview", methods=["GET"])
 def GetRestaurantReview():
     return jsonify(service().get_restaurant_review())
